@@ -4,12 +4,28 @@
 package dddSample
 
 class App {
-    val greeting: String
-        get() {
-            return "Hello world."
-        }
+    fun createUser(id: String, firstName: String, lastName: String) {
+        val user = User(id, firstName, lastName)
+    }
+
+    inline fun test(init: (Int) -> Int): Int {
+        return init(1)
+    }
 }
 
 fun main(args: Array<String>) {
-    println(App().greeting)
+    println(App().createUser("id", "fname", "lname"))
+    val t: (Int) -> Int = { it: Int -> it + 1 }
+    val intArray = intArrayOf(1, 2, 3)
+    println("111111")
+    intArray.iterator().forEach(::println)
+    println("222222")
+    val intArray2 = intArray.apply { fill(2) }
+    intArray2.iterator().forEach(::println)
+    println("333333")
+    val intArray3 = IntArray(5).apply { fill(2) }
+    intArray3.iterator().forEach(::println)
+    println(intArray)
+    println(App().test(t))
+
 }
