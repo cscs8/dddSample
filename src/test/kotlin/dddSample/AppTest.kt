@@ -4,11 +4,11 @@
 package dddSample
 
 import kotlin.test.Test
-import kotlin.test.assertNotNull
+import kotlin.test.assertFailsWith
 
 class AppTest {
-    @Test fun testAppHasAGreeting() {
-        val classUnderTest = App()
-        assertNotNull(classUnderTest.greeting, "app should have a greeting")
+    @Test
+    fun testAppThrowException() {
+        assertFailsWith<Exception> { App().createUser("a", "b", "c") }
     }
 }
