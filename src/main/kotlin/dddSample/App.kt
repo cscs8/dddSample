@@ -10,9 +10,9 @@ class App {
         val user = User(
                 UserName(userName),
                 FullName(firstName, lastName))
-        val userService = UserService()
-        if (userService.isDuplicated(user)) throw Exception("重複 : $user")
         val userRepository = UserRepository()
+        val userService = UserService(userRepository)
+        if (userService.isDuplicated(user)) throw Exception("重複 : $user")
         userRepository.save(user)
     }
 }
