@@ -3,16 +3,17 @@
  */
 package dddSample
 
+import UserRepository
+
 class App {
     fun createUser(userName: String, firstName: String, lastName: String) {
         val user = User(
                 UserName(userName),
                 FullName(firstName, lastName))
         val userService = UserService()
-        with(userService) {
-            if (isDuplicated(user)) throw Exception("重複 : $user")
-            // TODO: 登録
-        }
+        if (userService.isDuplicated(user)) throw Exception("重複 : $user")
+        val userRepository = UserRepository()
+        userRepository.save(user)
     }
 }
 
