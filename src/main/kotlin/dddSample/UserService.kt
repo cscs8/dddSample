@@ -1,6 +1,6 @@
 package dddSample
 
-class UserService {
+class UserService : IUserService{
     // TODO: 実装
-    fun isDuplicated(user: User): Boolean = true
+    override fun isDuplicated(user: User): Boolean = true
 }
