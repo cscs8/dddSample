@@ -3,20 +3,24 @@
  */
 package dddSample
 
-import UserRepository
+import IUserRepository
+import InMemoryUserRepository
 
-class App {
+class App(private val userRepository: IUserRepository) {
+    val userService: UserService by lazy {
+        UserService(userRepository)
+    }
+
     fun createUser(userName: String, firstName: String, lastName: String) {
         val user = User(
                 UserName(userName),
                 FullName(firstName, lastName))
-        val userRepository = UserRepository()
-        val userService = UserService(userRepository)
         if (userService.isDuplicated(user)) throw Exception("重複 : $user")
         userRepository.save(user)
     }
 }
 
 fun main(args: Array<String>) {
-    println(App().createUser("id", "fname", "lname"))
+    println(App(InMemoryUserRepository())
+            .createUser("id", "fname", "lname"))
 }

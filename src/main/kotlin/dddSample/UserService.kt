@@ -1,8 +1,8 @@
 package dddSample
 
-import UserRepository
+import IUserRepository
 
-class UserService(private val userRepository: UserRepository) : IUserService{
+class UserService(private val userRepository: IUserRepository) : IUserService {
     // TODO: 実装
     override fun isDuplicated(user: User): Boolean {
         val name = user.userName
